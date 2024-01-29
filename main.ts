@@ -15,9 +15,9 @@ basic.forever(function () {
     DiferenciaAnterior = Diferencia
     DeltaTime = input.runningTimeMicros() - TimeAnterior
     TimeAnterior = input.runningTimeMicros()
-    Velocidad = DeltaY / DeltaTime
-    Respuesta = Kp * Math.map(Diferencia, -200, 200, -128, 128) + Kd * Math.map(Velocidad, -10, 10, -128, 128)
-    if (Respuesta >= 0) {
+    Velocidad = 3000 * (DeltaY / DeltaTime)
+    Respuesta = Kp * Math.map(Diferencia, -200, 200, -128, 128) + Kd * Math.map(Velocidad, -50, 50, -128, 128)
+    if (Respuesta <= 0) {
         maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, Math.abs(Respuesta))
     } else {
         maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CCW, Math.abs(Respuesta))
